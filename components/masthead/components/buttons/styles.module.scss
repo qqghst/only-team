@@ -1,0 +1,27 @@
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    align-self: flex-start;
+    gap: 20px;
+
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // z-index: 10;
+    
+    img {
+        border-radius: 50%;
+        border: 1px solid #42567a80;
+        padding: 18.75px 21.5px;
+
+        @media (max-width: 768px) {
+            padding: 9.38px 10.62px 
+        }
+    }
+
+    img:nth-child(2) {
+        transform: rotate(180deg);
+    }
+}

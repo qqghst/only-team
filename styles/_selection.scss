@@ -1,0 +1,11 @@
+@import './variables';
+
+::selection {
+    background: $color-fuschia;
+    color: $color-white;
+    
+}
+::-moz-selection {
+    background: $color-fuschia;
+    color: $color-white;
+}

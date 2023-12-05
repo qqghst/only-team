@@ -1,0 +1,184 @@
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+import styles from './styles.module.scss';
+import Image from 'next/image';
+import { slidersData, yearRanges, words } from './data';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import Slider from './components/slider';
+
+const Masthead: React.FC = () => {
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const [animatedYear, setAnimatedYear] = useState(yearRanges[0]);
+	const [rotationAngle, setRotationAngle] = useState(0);
+
+	const containerRef = useRef<HTMLUListElement>(null);
+	const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
+
+	useEffect(() => {
+		const targetYear = yearRanges[currentIndex];
+		const interval = setInterval(() => {
+			setAnimatedYear((prevYear) => {
+				let newStartYear = prevYear.startYear;
+				let newEndYear = prevYear.endYear;
+
+				if (newStartYear !== targetYear.startYear) {
+					newStartYear = newStartYear < targetYear.startYear ? newStartYear + 1 : newStartYear - 1;
+				}
+
+				if (newEndYear !== targetYear.endYear) {
+					newEndYear = newEndYear < targetYear.endYear ? newEndYear + 1 : newEndYear - 1;
+				}
+
+				if (newStartYear === targetYear.startYear && newEndYear === targetYear.endYear) {
+					clearInterval(interval);
+				}
+
+				return { startYear: newStartYear, endYear: newEndYear };
+			});
+		}, 50);
+
+		return () => clearInterval(interval);
+	}, [currentIndex, yearRanges]);
+
+	const nextRange = () => {
+		if (currentIndex < yearRanges.length - 1) {
+			setCurrentIndex((prevIndex) => prevIndex + 1);
+			setRotationAngle((prevAngle) => prevAngle + 360 / yearRanges.length);
+		}
+	};
+
+	const prevRange = () => {
+		if (currentIndex > 0) {
+			setCurrentIndex((prevIndex) => prevIndex - 1);
+			setRotationAngle((prevAngle) => prevAngle - 360 / yearRanges.length);
+		}
+	};
+
+	const handleCircleItemClick = (index: number) => {
+		const diff = index - currentIndex; // Разница между текущим и новым индексом
+		const angleChange = 360 / yearRanges.length; // Угол изменения для одного элемента
+		setCurrentIndex(index);
+		setRotationAngle((prevAngle) => prevAngle + diff * angleChange);
+	};
+
+	const formatNumber = (num: number) => `0${num}`.slice(-2);
+
+	useEffect(() => {
+		const container = containerRef.current;
+		const circles = itemRefs.current.filter((circle) => circle !== null);
+		if (container) {
+			const radius = container.offsetWidth / 2;
+			const individualRotation = 360 / circles.length;
+
+			circles.forEach((circle, i) => {
+				const totalRotation = i * individualRotation + rotationAngle;
+				const value = `rotate(${totalRotation}deg) translate(${radius}px) rotate(-${totalRotation}deg)`;
+				if (circle) {
+					circle.style.transform = value;
+				}
+			});
+		}
+	}, [rotationAngle, yearRanges.length]);
+
+	// Создание refs для каждого circleItem
+	useEffect(() => {
+		itemRefs.current = itemRefs.current.slice(0, yearRanges.length);
+	}, [yearRanges.length]);
+
+	return (
+		<div className={styles.masthead}>
+			<div className={styles.masthead__container}>
+				<div className={styles.leftLine} />
+				<div className={styles.middleLine} />
+				<div className={styles.rightLine} />
+				<div className={styles.horizontalLine} />
+				<div className={styles.year}>
+					<h1 className='h1'>{animatedYear.startYear}</h1>
+					<h1 className='h1'>{animatedYear.endYear}</h1>
+				</div>
+				<div className={styles.numbers}>
+					<span className='small'>
+						{formatNumber(currentIndex + 1)}/{formatNumber(yearRanges.length)}
+					</span>
+				</div>
+				<div className={styles.arrows}>
+					<Image
+						src='/masthead/arrow.svg'
+						alt='arrow'
+						width={12.5 / 2}
+						height={25 / 2}
+						onClick={prevRange}
+						style={{
+							opacity: currentIndex > 0 ? 1 : 0.5,
+							pointerEvents: currentIndex > 0 ? 'auto' : 'none',
+						}}
+					/>
+					<Image
+						src='/masthead/arrow.svg'
+						alt='arrow'
+						width={12.5 / 2}
+						height={25 / 2}
+						onClick={nextRange}
+						style={{
+							opacity: currentIndex < yearRanges.length - 1 ? 1 : 0.5,
+							pointerEvents: currentIndex < yearRanges.length - 1 ? 'auto' : 'none',
+						}}
+					/>
+				</div>
+				<div className={styles.circleContainer}>
+					<ul className={styles.circle} ref={containerRef}>
+						{yearRanges.map((_, index) => (
+							<li
+								className={`${styles.circleItem} ${index === currentIndex ? styles.active : ''}`}
+								ref={(el) => (itemRefs.current[index] = el)}
+								key={index}
+								onClick={() => handleCircleItemClick(index)}
+							>
+								<span
+									className={`${styles.circleInfo} ${index === currentIndex ? styles.visible : ''}`}
+								>
+									{index + 1}
+								</span>
+								<span
+									className={`${styles.circleWord} ${index === currentIndex ? styles.visible : ''}`}
+								>
+									{words[index]}
+								</span>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<Swiper
+					modules={[Navigation, Pagination, Scrollbar, A11y]}
+					spaceBetween={50}
+					slidesPerView={3}
+					navigation
+					onSlideChange={() => console.log('slide change')}
+					onSwiper={(swiper) => console.log(swiper)}
+					style={{ width: '75vw', position: 'absolute', bottom: 0 }}
+				>
+					<div className={styles.slider}>
+						{slidersData[currentIndex].contents.map((content, index) => (
+							<SwiperSlide key={index}>
+								<div className={styles.textContainer}>
+									<h5 className='h5'>{content.year}</h5>
+									<p className='p'>{content.content}</p>
+								</div>
+							</SwiperSlide>
+						))}
+					</div>
+				</Swiper>
+
+			</div>
+		</div>
+	);
+};
+
+export default Masthead;

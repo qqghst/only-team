@@ -1,0 +1,103 @@
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import styles from './styles.module.scss';
+import Image from 'next/image';
+import TextPlugin from 'gsap/dist/TextPlugin';
+
+const Masthead: React.FC = () => {
+	gsap.registerPlugin(TextPlugin);
+	const yearRanges = [
+		{ startYear: 1992, endYear: 1997 },
+		{ startYear: 1999, endYear: 2004 },
+		{ startYear: 2005, endYear: 2007 },
+		{ startYear: 2008, endYear: 2013 },
+		{ startYear: 2014, endYear: 2017 },
+		{ startYear: 2017, endYear: 2023 },
+	];
+
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const startYearRef = useRef(null);
+	const endYearRef = useRef(null);
+
+	useEffect(() => {
+		const targetYear = yearRanges[currentIndex];
+		gsap.to(startYearRef.current, {
+			duration: 2,
+			textContent: targetYear.startYear,
+			ease: 'power1.inOut',
+			snap: { textContent: 1 },
+			onUpdate: () => {
+				startYearRef.current.textContent = Math.round(
+					startYearRef.current.textContent,
+				);
+			},
+		});
+		gsap.to(endYearRef.current, {
+			duration: 2,
+			textContent: targetYear.endYear,
+			ease: 'power1.inOut',
+			snap: { textContent: 1 },
+			onUpdate: () => {
+				endYearRef.current.textContent = Math.round(
+					endYearRef.current.textContent,
+				);
+			},
+		});
+	}, [currentIndex, yearRanges]);
+
+	const nextRange = () => {
+		if (currentIndex < yearRanges.length - 1) {
+			setCurrentIndex((prevIndex) => prevIndex + 1);
+		}
+	};
+
+	const prevRange = () => {
+		if (currentIndex > 0) {
+			setCurrentIndex((prevIndex) => prevIndex - 1);
+		}
+	};
+
+	return (
+		<div className={styles.masthead}>
+			<div className={styles.masthead__container}>
+				<div>
+					<h1 className='h1' ref={startYearRef}>
+						{yearRanges[0].startYear}
+					</h1>
+					<h1 className='h1' ref={endYearRef}>
+						{yearRanges[0].endYear}
+					</h1>
+				</div>
+				<div>
+					<Image
+						src='/masthead/arrow.svg'
+						alt='arrow left'
+						width={12.5 / 2}
+						height={25 / 2}
+						onClick={prevRange}
+						style={{
+							visibility: currentIndex > 0 ? 'visible' : 'hidden',
+						}}
+					/>
+					<Image
+						src='/masthead/arrow.svg'
+						alt='arrow right'
+						width={12.5 / 2}
+						height={25 / 2}
+						onClick={nextRange}
+						style={{
+							visibility:
+								currentIndex < yearRanges.length - 1
+									? 'visible'
+									: 'hidden',
+						}}
+					/>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Masthead;

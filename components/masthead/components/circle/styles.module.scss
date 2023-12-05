@@ -1,0 +1,88 @@
+@import '../../../../styles/variables';
+
+.circleContainer {
+    position: absolute;
+    top: 11.198vw; //215px; 1920
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 10000000000;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
+    .circle {
+        position: relative;
+        width: 27.917vw; //536px; 1920
+        height: 27.604vw; //530px; 1920
+        list-style-type: none;
+        border: 1px solid $color-black-blue;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        transform: rotate(-90deg);
+        z-index: 10000000000;
+
+        .circleItem {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: rgb(128, 24, 24);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            transition: all 0.5s ease;
+
+            &.active {
+                width: 56px;
+                height: 56px;
+                background-color: white;
+                border: 1px solid black;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 46px;
+                height: 46px;
+                border-radius: 50%;
+                background: transparent;
+            }
+
+            &:hover {
+                width: 56px;
+                height: 56px;
+                background-color: white;
+                border: 1px solid black;
+            }
+
+            &:hover > .circleInfo {
+                display: block;
+                // opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        .circleInfo {
+            transform: rotate(90deg);
+            // opacity: 0;
+            visibility: hidden;
+            // display: none;
+
+            &.visible {
+                visibility: visible;
+            }
+        }
+
+        .circleWord {
+            position: absolute;
+            top: 96px;
+            transform: rotate(90deg);
+            visibility: hidden;
+
+            &.visible {
+                visibility: visible;
+            }
+        }
+    }
+}
