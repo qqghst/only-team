@@ -1,16 +1,26 @@
-.slider {
-	display: flex;
-	flex-direction: row;
+.sliderWrapper {
+	position: absolute;
+	bottom: 100px;
 }
-.textContainer {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-	width: 20.833vw; //400px; 1920
-	height: 7.031vw; //135px; 1920
 
-	@media (max-width: 768px) {
-		width: 51.875vw; //166px; 320
-		height: 25vw; //80px; 320
+.slider {
+	&__container {
+		display: flex;
+		flex-direction: row;
+
+
+
+		.content {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			width: 20.833vw; //400px; 1920
+			height: 7.031vw; //135px; 1920
+
+			@media (max-width: 768px) {
+				width: 51.875vw; //166px; 320
+				height: 25vw; //80px; 320
+			}
+		}
 	}
 }

@@ -1,23 +1,49 @@
-.swiper-button-next,
-.swiper-button-prev {
-	color: blue;
-	// width: 30px;
-	// height: 30px;
-	border: 2px solid blue;
-	border-radius: 50%;
-	background-color: white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+// .swiper-container {
+// 	width: 71vw !important;
+// }
+
+.swiper {
+	width: 71vw !important;
+
+	@media (max-width: 1440px) {
+		width: 63vw !important;
+	}
+
+	@media (max-width: 1600px) {
+		width: 66vw !important;
+	}
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+	// width: 100% !important;
+	display: inline-block !important;
+	position: absolute !important;
+	bottom: 100px !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+	display: none !important;
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-	// font-size: 20px;
-	color: blue;
+	display: none !important;
 }
 
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
-	font-size: 10px !important;
+	display: none !important;
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+	display: none !important;
+}
+
+.swiper-nav-btns button {
+	display: none !important;
 }

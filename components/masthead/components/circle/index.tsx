@@ -1,21 +1,14 @@
-'use client'
+'use client';
 
 import React, { useRef, useEffect } from 'react';
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
+import { ICircleContainerProps } from './interface';
 
-type CircleContainerProps = {
-	yearRanges: Array<{ startYear: number; endYear: number }>;
-	currentIndex: number;
-	rotationAngle: number;
-	handleCircleItemClick: (index: number) => void;
-	words: string[];
-};
-
-const Circle: React.FC<CircleContainerProps> = ({
+const Circle: React.FC<ICircleContainerProps> = ({
 	yearRanges,
 	currentIndex,
 	rotationAngle,
-	handleCircleItemClick,
+	handleCircleClick,
 	words,
 }) => {
 	const containerRef = useRef<HTMLUListElement>(null);
@@ -38,6 +31,7 @@ const Circle: React.FC<CircleContainerProps> = ({
 		}
 	}, [rotationAngle, yearRanges.length]);
 
+	// // тут я создаю рефы для каждого элемента circleItem 
 	useEffect(() => {
 		itemRefs.current = itemRefs.current.slice(0, yearRanges.length);
 	}, [yearRanges.length]);
@@ -50,7 +44,7 @@ const Circle: React.FC<CircleContainerProps> = ({
 						className={`${styles.circleItem} ${index === currentIndex ? styles.active : ''}`}
 						ref={(el) => (itemRefs.current[index] = el)}
 						key={index}
-						onClick={() => handleCircleItemClick(index)}
+						onClick={() => handleCircleClick(index)}
 					>
 						<span className={`${styles.circleInfo} ${index === currentIndex ? styles.visible : ''}`}>
 							{index + 1}

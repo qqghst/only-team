@@ -25,3 +25,19 @@ cd only-team
 npm install
 # Run the development server
 npm run dev
+```
+
+## Info
+
+```bash
+Проект написан на Next.js, TypeScript
+
+В папку utils вынес функции
+В папку hooks вынес хуки
+В папке styles: 
+    editor - для шрифтов
+    variables - для цветов
+Masthead - это главный экран, то есть header. Компоненты для главного экрана вынес в отдельыне компоненты masthead/components/..
+
+Использовал vw как единицу измерения для адаптива, рядом в комментарии закрепил размеры в пикселях
+```
