@@ -2,7 +2,7 @@
 
 .h1 {
 	//2015 2020
-	font-family: PT Sans;
+	font-family: 'PT Sans', sans-serif;
 	font-size: 10.417vw; //200px; 1920
 	font-weight: 700;
 	line-height: 8.333vw; //160px; 1920
@@ -18,7 +18,7 @@
 
 .h2 {
 	//Исторические даты
-	font-family: PT Sans;
+	font-family: 'PT Sans', sans-serif;
 	font-size: 2.917vw; //56px; 1920
 	font-weight: 700;
 	line-height: 3.49vw; //67px; 1920
@@ -35,7 +35,7 @@
 
 .h5 {
 	//2015 2016 2017
-	font-family: Bebas Neue;
+	font-family: 'BebasNeueRegular', sans-serif;
 	font-size: 1.302vw; //25px; 1920
 	font-weight: 400;
 	line-height: 1.563vw; //30px; 1920
@@ -44,7 +44,6 @@
 	color: $color-blue;
 
 	@media (max-width: 768px) {
-		font-family: Bebas Neue;
 		font-size: 5vw; //16px; 320
 		font-weight: 400;
 		line-height: 5.938vw; //19px; 320
@@ -55,7 +54,7 @@
 
 .p {
 	//13 сентября — частное солнечное затмение, видимое в Южной Африке и части Антарктиды
-	font-family: PT Sans;
+	font-family: 'PT Sans', sans-serif;
 	font-size: 1.042vw; //20px; 1920
 	font-weight: 400;
 	line-height: 1.563vw; //30px; 1920
@@ -73,7 +72,7 @@
 
 .small {
     //06/06
-	font-family: PT Sans;
+	font-family: 'PT Sans', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 18px;

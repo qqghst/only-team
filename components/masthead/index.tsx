@@ -42,7 +42,7 @@ const Masthead: React.FC = () => {
 					}
 					words={words}
 				/>
-				{/* <Slider slidesData={sliderData[currentIndex].contents} /> */}
+				<Slider slidesData={sliderData[currentIndex].contents} />
 
 				<div className={styles.leftLine} />
 				<div className={styles.middleLine} />

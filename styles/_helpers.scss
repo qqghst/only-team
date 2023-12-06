@@ -1,1 +1,13 @@
 @import './variables';
+
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .hide-on-desktop {
+        display: none;
+    }
+}

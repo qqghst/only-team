@@ -1,14 +1,7 @@
-.sliderWrapper {
-	position: absolute;
-	bottom: 100px;
-}
-
 .slider {
 	&__container {
 		display: flex;
 		flex-direction: row;
-
-
 
 		.content {
 			display: flex;
@@ -19,7 +12,7 @@
 
 			@media (max-width: 768px) {
 				width: 51.875vw; //166px; 320
-				height: 25vw; //80px; 320
+				height: 2vw; //80px; 320
 			}
 		}
 	}

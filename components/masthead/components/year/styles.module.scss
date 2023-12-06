@@ -6,8 +6,12 @@
 	justify-content: center;
 	align-items: center;
 	gap: 3.333vw; //64px; 1920
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 25vw; //480px
+	transform: translateY(-50%);
 	z-index: 2;
-	transform: translateY(-2.97vw); //58px; 1920
 
 	h1:nth-child(1) {
 		color: $color-iris;
@@ -17,6 +21,7 @@
 	}
 
 	@media (max-width: 768px) {
-		transform: translateY(-32vw); //-120px, 375
+		transform: translateY(20vw); //-120px, 375
+		gap: 14.4vw; //54px; 375
 	}
 }

@@ -6,6 +6,10 @@
 		align-items: start;
 		align-self: flex-start;
 		gap: 20px;
+		
+		@media (max-width: 768px) {
+			gap: 2.221vw //8.33px; 375
+		}
 
 		img {
 			border-radius: 50%;
@@ -13,7 +17,7 @@
 			padding: 18.75px 21.5px;
 
 			@media (max-width: 768px) {
-				padding: 9.38px 10.62px;
+				padding: 9.38px 10.62px 9.37px 11.25px;
 			}
 		}
 

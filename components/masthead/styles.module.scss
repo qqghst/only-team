@@ -1,25 +1,24 @@
 @import '../../styles/variables';
 
 .masthead {
-	padding: 0 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 0 10.417vw; //0 200px
 	background-color: $color-bg;
 
 	@media (max-width: 768px) {
-		padding: 0 20px;
+		padding: 0 5.333vw; //0 20px; 375
 	}
 
 	&__container {
 		min-height: 100vh;
 		width: 100vw;
-		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
-	
+		position: relative;
+		padding: 0 4.063vw; //78px; 1920
 
 		.leftLine {
 			position: absolute;
@@ -76,7 +75,7 @@
 				top: 50%;
 				height: 1px;
 				transform: translate(-50%, -50%);
-				width: 100%;
+				width: 90vw;
 			}
 		}
 
@@ -87,7 +86,14 @@
 			gap: 20px;
 			position: absolute;
 			left: 0;
-			bottom: 17.083vw; //328px
+			bottom: 14.583vw; //280px
+
+			@media (max-width: 768px) {
+				gap: 10px;
+				// padding-left: 5.333vw; //20px; 375
+				padding-left: 0;
+				bottom: 13.33px;
+			}
 		}
 	}
 }

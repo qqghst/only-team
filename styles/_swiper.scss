@@ -1,16 +1,11 @@
-// .swiper-container {
-// 	width: 71vw !important;
-// }
-
 .swiper {
-	width: 71vw !important;
+	width: 90% !important;
+	position: absolute !important;
+	bottom: 6.417vw !important;
+	cursor: pointer !important;
 
-	@media (max-width: 1440px) {
-		width: 63vw !important;
-	}
-
-	@media (max-width: 1600px) {
-		width: 66vw !important;
+	@media (max-width: 768px) {
+		bottom: 26vw !important;
 	}
 }
 
@@ -18,10 +13,20 @@
 .swiper-pagination-custom,
 .swiper-horizontal > .swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-	// width: 100% !important;
 	display: inline-block !important;
 	position: absolute !important;
-	bottom: 100px !important;
+
+	bottom: 11px !important;
+	margin: 0 auto !important;
+	display: flex !important;
+	justify-content: center !important;
+	width: 100% !important;
+}
+
+.swiper-pagination,
+.swiper-pagination-bullets,
+.swiper-pagination-horizontal {
+	display: none !important; 
 }
 
 .swiper-button-prev,

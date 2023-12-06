@@ -24,10 +24,12 @@ const Slider: React.FC<SliderProps> = ({ slidesData }) => {
 				modules={[Navigation, Pagination, Scrollbar, A11y]}
 				spaceBetween={50}
 				navigation
-				pagination
+				pagination={{
+					el: '.swiper-custom-pagination',
+				}}
 				onSlideChange={() => console.log('slide change')}
 				onSwiper={(swiper) => setSwiperRef(swiper)}
-				style={{ position: 'absolute', bottom: '100px' }}
+				// style={{ width: '90%', position: 'absolute', bottom: '26vw' }}
 				breakpoints={{
 					320: {
 						slidesPerView: 2,
